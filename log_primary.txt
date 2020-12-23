@@ -1,0 +1,132 @@
+> ssh aws
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-10-1-10-70 ~]$ mysql -uadmin -p primarydb.cuic19ep1gex.eu-central-1.rds.amazonaws.com
+-bash: mysql: command not found
+[ec2-user@ip-10-1-10-70 ~]$ sudo apt install mysql
+sudo: apt: command not found
+[ec2-user@ip-10-1-10-70 ~]$ yum update -y
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+You need to be root to perform this command.
+[ec2-user@ip-10-1-10-70 ~]$ sudo !!
+sudo yum update -y
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+amzn2-core                                                                                                                                             | 3.7 kB  00:00:00
+No packages marked for update
+[ec2-user@ip-10-1-10-70 ~]$ sudo yum install mysql
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Resolving Dependencies
+--> Running transaction check
+---> Package mariadb.x86_64 1:5.5.68-1.amzn2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==============================================================================================================================================================================
+ Package                                Arch                                  Version                                         Repository                                 Size
+==============================================================================================================================================================================
+Installing:
+ mariadb                                x86_64                                1:5.5.68-1.amzn2                                amzn2-core                                8.8 M
+
+Transaction Summary
+==============================================================================================================================================================================
+Install  1 Package
+
+Total download size: 8.8 M
+Installed size: 49 M
+Is this ok [y/d/N]:
+Exiting on user command
+Your transaction was saved, rerun it with:
+ yum load-transaction /tmp/yum_save_tx.2020-12-23.17-35.GO7MSD.yumtx
+[ec2-user@ip-10-1-10-70 ~]$ sudo yum install mysql
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Resolving Dependencies
+--> Running transaction check
+---> Package mariadb.x86_64 1:5.5.68-1.amzn2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==============================================================================================================================================================================
+ Package                                Arch                                  Version                                         Repository                                 Size
+==============================================================================================================================================================================
+Installing:
+ mariadb                                x86_64                                1:5.5.68-1.amzn2                                amzn2-core                                8.8 M
+
+Transaction Summary
+==============================================================================================================================================================================
+Install  1 Package
+
+Total download size: 8.8 M
+Installed size: 49 M
+Is this ok [y/d/N]: y
+Downloading packages:
+mariadb-5.5.68-1.amzn2.x86_64.rpm                                                                                                                      | 8.8 MB  00:00:00
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : 1:mariadb-5.5.68-1.amzn2.x86_64                                                                                                                            1/1
+  Verifying  : 1:mariadb-5.5.68-1.amzn2.x86_64                                                                                                                            1/1
+
+Installed:
+  mariadb.x86_64 1:5.5.68-1.amzn2
+
+Complete!
+[ec2-user@ip-10-1-10-70 ~]$ mysql -uadmin -p primarydb.cuic19ep1gex.eu-central-1.rds.amazonaws.com
+Enter password:
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)
+[ec2-user@ip-10-1-10-70 ~]$ mysql -P 3306 -uadmin -p primarydb.cuic19ep1gex.eu-central-1.rds.amazonaws.com
+Enter password:
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)
+[ec2-user@ip-10-1-10-70 ~]$ mysql -P 3306 -uadmin -p -h primarydb.cuic19ep1gex.eu-central-1.rds.amazonaws.com
+Enter password:
+ERROR 1045 (28000): Access denied for user 'admin'@'10.1.10.70' (using password: YES)
+[ec2-user@ip-10-1-10-70 ~]$ mysql -h mysql–instance1.123456789012.us-east-1.rds.amazonaws.com --ssl-ca=rds-ca-2015-root.pem -P 3306 -u mymasteruser -p^C
+[ec2-user@ip-10-1-10-70 ~]$ mysql -P 3306 -uadmin -p -h primarydb.cuic19ep1gex.eu-central-1.rds.amazonaws.com
+Enter password:
+ERROR 1045 (28000): Access denied for user 'admin'@'10.1.10.70' (using password: YES)
+[ec2-user@ip-10-1-10-70 ~]$ mysql -P 3306 -uadmin -p -h primarydb.cuic19ep1gex.eu-central-1.rds.amazonaws.com
+Enter password:
+ERROR 1045 (28000): Access denied for user 'admin'@'10.1.10.70' (using password: YES)
+[ec2-user@ip-10-1-10-70 ~]$ mysql -P 3306 -uadmin -p -h primarydb.cuic19ep1gex.eu-central-1.rds.amazonaws.com
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 26
+Server version: 8.0.21 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> use udacity
+Database changed
+MySQL [udacity]> CREATE TABLE learning
+    -> ;
+ERROR 1113 (42000): A table must have at least 1 column
+MySQL [udacity]> CREATE TABLE learning  ;
+Display all 745 possibilities? (y or n)
+MySQL [udacity]> CREATE TABLE learning (id int not null primary key, name varchar(255)) ;
+Query OK, 0 rows affected (0.06 sec)
+
+MySQL [udacity]> INSERT into learning values ("hi")
+    -> ;
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MySQL [udacity]> INSERT into learning values (1, "hi")
+    -> ;
+Query OK, 1 row affected (0.01 sec)
+
+MySQL [udacity]> select * from learning
+    -> ;
++----+------+
+| id | name |
++----+------+
+|  1 | hi   |
++----+------+
+1 row in set (0.00 sec)
+
+MySQL [udacity]>

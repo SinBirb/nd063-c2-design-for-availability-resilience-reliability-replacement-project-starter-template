@@ -1,0 +1,22 @@
+# CloudFormation IDs
+
+## Primary
+
+ApplicationSecurityGroup	sg-01754e1ea8d551b01	ID of the EC2 instance security group	-
+DatabaseSecurityGroup	sg-0a9ceb1d39e2e3263	ID of the database security group	-
+PrivateSubnets	subnet-0c180f946a3d50dee, subnet-0a05dfa822ba65a5d	A list of the private subnets	-
+PublicSubnets	subnet-0374265a2005fd89b, subnet-03f17085853912a30	A list of the public subnets	-
+VPC	vpc-08a2db2c60fc9dba9	VPC ID
+
+## Secondary
+
+ApplicationSecurityGroup	sg-04b2049e449d0be93	ID of the EC2 instance security group	-
+DatabaseSecurityGroup	sg-05faa4f4eb831fff3	ID of the database security group	-
+PrivateSubnets	subnet-0ba6053adc0d621e0, subnet-0afb9293d12053b12	A list of the private subnets	-
+PublicSubnets	subnet-006b6d6e71de6351f, subnet-0eaa00e9d508f6bf2	A list of the public subnets	-
+VPC	vpc-01bb63869bcb0e3e6	VPC ID
+
+## passwords
+
+### primaryDB: admin:a$dCVKDGU*RdHwsFi3SWcw^z&r*!5Ef4
+### read-replica: admin:vV&dQB5RaAGsw!By8gdGt3YS5nq$rubV

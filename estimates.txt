@@ -1,0 +1,4 @@
+The minimum RTO (recovery time objective) for a single AZ outage will be between 60-120s and recovery will be automatic, as stated in: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html
+Minimum RPO is 0, because there is a read replica.
+
+For a single region outage, manual intervention is required. But because there is a standby DB instance, minimum RTO will only be around 20min. Minimum RPO can be considered to be the same as in the single AZ outage scenario (0), because instance failure will be detected automatically by AWS and therefore the user will not receive success status when a data transaction failed.
